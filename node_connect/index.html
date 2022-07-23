@@ -1,0 +1,36 @@
+Connect your node <input id="address" placeholder="Your node">
+<input id="node" placeholder="Remote node">
+<input id="cash" placeholder="Cash from wallet"> <button id="connect">Connect</button>
+
+
+<script>
+    document.getElementById("connect").onclick = async () => {
+        let addrses = document.getElementById("address").value
+        let node = document.getElementById("node").value
+        let cash = JSON.parse(document.getElementById("cash").value)
+
+        if (!node.includes(":")) {
+            node += ":2525"
+        }
+
+        if (!node.includes("https://")) {
+            node = "https://" + node
+        }
+
+        let packet = {
+            "node": addrses,
+            "cash": cash
+        }
+
+        try {
+            res = await fetch(node + "/connect/" + JSON.stringify(packet))
+            if (res.ok) {
+                alert("Connected")
+            } else {
+                alert("Error")
+            }
+        } catch {
+            alert("Error")
+        }
+    }
+</script>

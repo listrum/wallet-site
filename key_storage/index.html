@@ -1,0 +1,69 @@
+<input id="node" placeholder="Node"><input id="name" placeholder="Name"> <br>
+
+Store key: <input id="key" placeholder="Key"> <input id="cash" placeholder="Cash">
+<button id="send">Send</button><br>
+
+Get key: <button id="get">Get</button><br>
+
+<script>
+    document.body.onload = () => {
+        document.title = "Store key | Listrum"
+    }
+
+    document.getElementById("get").onclick = async () => {
+        let node = document.getElementById("node").value
+        let name = document.getElementById("name").value
+
+        if (!node.includes(":")) {
+            node += ":2525"
+        }
+        if (!node.includes("https://")) {
+            node = "https://" + node
+        }
+
+        try {
+            res = await fetch(node + "/get/" + name)
+
+            if (!res.ok) {
+                alert("No key")
+                return
+            }
+
+            navigator.clipboard.writeText(await res.text());
+            alert("Copied to clipboard!");
+        } catch {
+            alert("Error")
+        }
+    }
+
+    document.getElementById("send").onclick = async () => {
+        let key = JSON.parse(document.getElementById("key").value)
+        let node = document.getElementById("node").value
+        let cash = JSON.parse(document.getElementById("cash").value)
+        let name = document.getElementById("name").value
+
+        if (!node.includes(":")) {
+            node += ":2525"
+        }
+        if (!node.includes("https://")) {
+            node = "https://" + node
+        }
+
+        let packet = {
+            "cash": cash,
+            "name": name,
+            "key": key
+        }
+
+        try {
+            res = await fetch(node + "/store/" + JSON.stringify(packet))
+            if (res.ok) {
+                alert("Stored")
+            } else {
+                alert("Error")
+            }
+        } catch {
+            alert("Error")
+        }
+    }
+</script>

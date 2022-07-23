@@ -1,0 +1,44 @@
+Get history: <input id="wallet" placeholder="Wallet"> <input id="node" placeholder="Node"> <button id="get">Get</button>
+
+<ul id="history"></ul>
+
+
+<script>
+
+    document.body.onload = () => {
+        document.title = "History | Listrum"
+    }
+
+    document.getElementById("get").onclick = async () => {
+        let node = document.getElementById("node").value
+        let wallet = document.getElementById("wallet").value
+
+        if (!node.includes(":")) {
+            node += ":2525"
+        }
+
+        if (!node.includes("https://")) {
+            node = "https://" + node
+        }
+
+        let history = "";
+        try {
+            let res = await fetch(node + "/history/" + wallet);
+            res = JSON.parse(await res.text());
+
+            if (res.length) {
+                for (let tx of res) {
+                    history += "<li> To: " + tx.to + " value: " + tx.value + "</li>";
+                }
+            } else {
+                history = "No tx found"
+            }
+        } catch {
+            history = "Unbale to reach node"
+        }
+
+        document.getElementById("history").innerHTML = history;
+
+    }
+
+</script>
