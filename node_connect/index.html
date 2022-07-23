@@ -5,6 +5,11 @@ Connect your node <input id="address" placeholder="Your node">
 
 
 <script>
+
+    document.body.onload = () => {
+        document.title = "Connect node | Listrum"
+    }
+
     document.getElementById("connect").onclick = async () => {
         let addrses = document.getElementById("address").value
         let node = document.getElementById("node").value
