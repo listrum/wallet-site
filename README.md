@@ -1,4 +1,4 @@
-# Wallet | History | Key storage | Node connect
+# Wallet | [History](https://github.com/listrum/web#history) | [Key storage](https://github.com/listrum/web#key-storage) | [Node connect](https://github.com/listrum/web#node-connect)
 
 ## Networking
 
@@ -28,3 +28,6 @@ Storage at your home directory /listrum/key_storage
 	HTTPS 200 OK
 
 #### Get your key
+	HTTPS GET :2525/get/KeyName
+	
+	HTTPS 200 Key
