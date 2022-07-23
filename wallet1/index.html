@@ -1,0 +1,37 @@
+<body>
+  <text>Your address: </text><select id="wallets"></select><button id="copy">Copy!</button><br />
+  <button id="new_key">New wallet</button>
+  <button id="export">Export key</button>
+  <button id="import">Import key</button><br /><br />
+
+  <text>Your balance: <text id="balance"></text></text><br />
+  <text>Fee: <text id="fee"></text></text><br />
+  <button id="update_balance">Update</button><br /><br />
+
+  <text>Send</text>
+  <input id="to" placeholder="To" />
+  <input id="value" placeholder="Value" />
+  <button id="send">Send</button><br /><br />
+
+  <text>Create cash</text>
+  <input id="cash_value" placeholder="Value" />
+  <button id="cash">Create</button><br /><br />
+
+  <text>Nodes</text>
+  <button id="add_node">Add node</button>
+  <ul id="nodes"></ul>
+  <br />
+
+  <script src="utils/const.js"></script>
+  <script src="utils/crypto.js"></script>
+  <script src="utils/text_coder.js"></script>
+
+  <script src="nodes.js"></script>
+  <script src="keys.js"></script>
+  <script src="balance.js"></script>
+  <script src="send.js"></script>
+  <script src="fee.js"></script>
+  <script src="update.js"></script>
+  <script src="wallets.js"></script>
+  <script src="cash.js"></script>
+</body>
